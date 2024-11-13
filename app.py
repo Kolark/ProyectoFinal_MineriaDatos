@@ -28,16 +28,18 @@ model, pipe, labelencoder, variables = pickle.load(open(filename, 'rb'))
 
 import streamlit as st
 
-st.title('Predicción de presupuesto para invertir videojuegos')
+st.title('Predicción de estado de devolución de equipos')
 
+predevolucion = st.selectbox('predevolucion', [0,1])
 valor_reposicion = st.slider('Valor Reposicion', min_value=0, max_value=7700000, value=0, step=1000)
 articulo = st.selectbox('articulo', ['Formaleta', 'Andamios', 'Equipo_multi', 'Herramienta', 'Equipo_Electronico', 'Tableros_Modulares'])
 obra = st.selectbox('obra', ['BODEGA METALMEGA', 'AMATISTA LIVING', 'FSCR', 'DEPOSITO JAZA', 'HCH COLOMBIA', 'EBENEZER CONSTRUCCIONES SAS', 'FRANCI ELENA VALENCIA FERNANDEZ', '20 DE JULIO'])
 
-datos = [[articulo, valor_reposicion, obra]]
-data = pd.DataFrame(datos, columns=['art_nombre', 'art_vr_reposicion', 'cco_nombre']) #Dataframe con los mismos nombres de variables
+datos = [[articulo, valor_reposicion, obra, predevolucion]]
+data = pd.DataFrame(datos, columns=['art_nombre', 'art_vr_reposicion', 'cco_nombre','predevolucion']) #Dataframe con los mismos nombres de variables
 
 # sample_data = {
+#     'predevolucion': [0],
 #     'art_nombre': ['Formaleta'],
 #     'art_vr_reposicion': [500000],
 #     'cco_nombre': ['BODEGA METALMEGA']
